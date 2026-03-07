@@ -1408,7 +1408,7 @@ async def get_dashboard_metrics(db: Session = Depends(get_db)):
 @app.get("/api/search/{drug_name}", response_model=AnalysisResponse)
 async def search_and_analyze(
     drug_name: str,
-    db: Session = Depends(get_db)   #ORM 
+    db: Session = Depends(get_db)
 ):
     """Main drug search and analysis endpoint"""
     start_time = datetime.utcnow()
