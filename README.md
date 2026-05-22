@@ -11,9 +11,9 @@ A professional medication safety web application that analyzes drug names for po
 - 🔁 App Flow
 - 🔐 Security & Environment
 
-## 🚀 Features
+## Features
 
-### 🎯 Core Analysis
+### Core Analysis
 - Drug name search and confusion risk analysis
 - Multiple similarity algorithms (Levenshtein, Jaro-Winkler, Fuzzy matching)
 - Phonetic matching (Soundex, Metaphone, NYSIIS)
@@ -38,7 +38,7 @@ A professional medication safety web application that analyzes drug names for po
 - Automatic drug risk analysis against all existing drugs
 - Known risky pairs seeding (ISMP/FDA sources)
 
-### 🎨 Modern UI/UX
+### Modern UI/UX
 - Glass morphism design with purple/pink gradient theme
 - Custom animated tabs and buttons
 - Responsive layout for all screen sizes
