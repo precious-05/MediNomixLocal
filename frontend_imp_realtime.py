@@ -6908,7 +6908,7 @@ def main():
         # Add images for features
         feature_images = [
             "https://img.freepik.com/premium-photo/modern-vital-sign-monitor-patient-background-ward-hospital_1095508-6659.jpg?semt=ais_hybrid&w=740&q=80",
-            "https://www.workingbuildings.com/images/hazardousdrugs.png",
+            "https://www.shutterstock.com/image-photo/medicine-safety-drug-overdose-risk-600nw-2696668117.jpg",
             "https://www.anxietyenders.com/images/handd.jpg"
         ]
         

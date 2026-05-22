@@ -1588,36 +1588,36 @@ async def get_all_drugs(
 async def startup_event():
     """Application startup event"""
     print("\n" + "="*60)
-    print("🚀 Medication Safety Guard v3.0 - Starting Up...")
+    print("Medication Safety Guard v3.0 - Starting Up...")
     print("="*60)
     
     # Initialize database
     if init_database():
-        print("✅ Database initialized successfully")
-        print(f"📊 Tables created: Drug, ConfusionRisk, AnalysisLog, KnownRiskyPair")
+        print("Database initialized successfully")
+        print(f"Tables created: Drug, ConfusionRisk, AnalysisLog, KnownRiskyPair")
     else:
-        print("⚠️  Database initialization had issues, but continuing...")
+        print("Database initialization had issues, but continuing...")
     
     # Display endpoint information
-    print("\n🌐 Available Endpoints:")
+    print("\n Available Endpoints:")
     print("   • http://localhost:8000/          - API Status")
     print("   • http://localhost:8000/health    - Health Check")
     print("   • http://localhost:8000/docs      - API Documentation")
     
-    print("\n💊 Enhanced Features:")
+    print("\  Enhanced Features:")
     print("   • Levenshtein distance algorithm for accurate spelling similarity")
     print("   • 3+ phonetic algorithms (Soundex, Metaphone, NYSIIS)")
     print("   • Drug class inference from name suffixes")
     print("   • Therapeutic context analysis")
     print("   • Demo data for empty database")
     
-    print("\n🔧 Quick Start:")
+    print("\n Quick Start:")
     print("   1. Run: curl -X POST http://localhost:8000/api/seed-database")
     print("   2. Search: curl http://localhost:8000/api/search/lamictal")
     print("   3. Check dashboard: http://localhost:8000/api/metrics")
     
     print("="*60)
-    print("✅ Medication Safety Guard v3.0 is ready!")
+    print(" MediNomix v3.0 is ready!")
     print("="*60 + "\n")
 
 # ==================== MAIN EXECUTION ====================
@@ -1634,8 +1634,8 @@ if __name__ == "__main__":
             reload=False
         )
     except Exception as e:
-        print(f"\n❌ Failed to start server: {e}")
-        print("\n🔧 Quick Fix Checklist:")
+        print(f"\n Failed to start server: {e}")
+        print("\n Quick Fix Checklist:")
         print("1. Install missing packages:")
         print("   pip install jellyfish fuzzywuzzy python-Levenshtein")
         print("2. Make sure PostgreSQL is running")
