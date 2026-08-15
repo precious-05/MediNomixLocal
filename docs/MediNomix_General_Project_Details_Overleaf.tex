@@ -1,0 +1,213 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+
+\definecolor{HeadingBlue}{HTML}{1F4D78}
+\definecolor{LightBlue}{HTML}{E8EEF5}
+\definecolor{LightGray}{HTML}{F2F4F7}
+\definecolor{TextGray}{HTML}{333333}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=HeadingBlue,
+    urlcolor=HeadingBlue
+}
+
+\setstretch{1.18}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{HeadingBlue}}
+  {\thesection}{0.7em}{}
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{HeadingBlue}}
+  {\thesubsection}{0.7em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MediNomix}
+\rhead{Project General Details}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\renewcommand{\arraystretch}{1.25}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1.2cm}
+
+    {\Large \textbf{University of Layyah}\par}
+    \vspace{0.5cm}
+    {\large Department of Computer Science\par}
+
+    \vspace{2.0cm}
+    {\Huge \textbf{\textcolor{HeadingBlue}{MediNomix}}\par}
+    \vspace{0.35cm}
+    {\Large \textbf{LASA Drugs Error Prevention System}\par}
+
+    \vspace{1.5cm}
+    {\large \textbf{Project General Details}\par}
+
+    \vfill
+
+    \begin{tabular}{>{\bfseries}p{4.3cm}p{8.2cm}}
+        Course Name: & Advance Database Systems \\
+        Student Name: & Alina Liaquat \\
+        Program: & BS Computer Science \\
+        Semester: & 5th Semester \\
+        Repository: & \url{https://github.com/precious-05/MediNomixLocal} \\
+    \end{tabular}
+
+    \vfill
+    {\large Submitted in partial fulfillment of the course project requirements\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Project Overview}
+
+MediNomix is a medication safety web application developed for the Advance Database Systems course. The project focuses on the detection of Look-Alike Sound-Alike (LASA) drug-name confusion. LASA confusion occurs when medicine names look similar, sound similar, or create risk during prescribing, dispensing, or administration.
+
+The application allows healthcare users to search a medicine name and receive a confusion-risk analysis. It uses database records, drug-name similarity algorithms, phonetic comparison, therapeutic context analysis, and dashboard visualizations to support safer medication workflows.
+
+\section{Problem Addressed}
+
+Medication errors can occur when two drugs have similar names or are confused during clinical workflow. MediNomix addresses this problem by identifying potentially confusing drug pairs and assigning a risk score. The purpose is to support early detection of risky drug-name similarity before a wrong medicine is selected or administered.
+
+\section{Project Objectives}
+
+\begin{itemize}[leftmargin=1.4cm]
+    \item To provide a searchable web application for medication confusion-risk analysis.
+    \item To identify LASA drug pairs using spelling and phonetic similarity.
+    \item To store drug information and risk analysis results in a relational database.
+    \item To integrate drug data from the OpenFDA Drug Label API.
+    \item To display risk categories, similarity scores, and dashboard analytics.
+    \item To demonstrate database concepts such as schema design, relationships, indexing, data integration, and analytical queries.
+\end{itemize}
+
+\section{Technology Stack}
+
+\begin{table}[h!]
+\centering
+\rowcolors{2}{LightGray}{white}
+\begin{tabularx}{\textwidth}{p{3.2cm}p{4.4cm}Y}
+\toprule
+\rowcolor{LightBlue}
+\textbf{Layer} & \textbf{Technology} & \textbf{Purpose} \\
+\midrule
+Backend & FastAPI, Pydantic, Uvicorn & REST API, request handling, response validation, and backend service execution. \\
+Frontend & Streamlit & Web-based user interface for search, results, and dashboard pages. \\
+Database & PostgreSQL, SQLAlchemy & Storage of drugs, confusion risks, known risky pairs, analysis logs, and system metrics. \\
+Data Source & OpenFDA Drug Label API & External source for drug label and medication information. \\
+Data Processing & Pandas, NumPy & Data handling and dashboard support. \\
+Similarity Algorithms & Levenshtein, FuzzyWuzzy, Jaro-Winkler & Spelling-based drug-name similarity analysis. \\
+Phonetic Algorithms & Soundex, Metaphone, NYSIIS & Sound-based comparison of drug names. \\
+Visualization & Plotly & Charts, risk breakdown, top-risk pairs, and heatmap visualizations. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Main Features}
+
+\subsection{Drug Search and Analysis}
+
+The application allows a user to enter a medication name. The backend checks the local database and can fetch drug data from the OpenFDA Drug Label API if the medicine is not already stored.
+
+\subsection{LASA Risk Scoring}
+
+MediNomix calculates multiple similarity signals, including spelling similarity, phonetic similarity, and therapeutic context risk. These values are combined into an overall risk score and categorized as critical, high, medium, or low.
+
+\subsection{Analytics Dashboard}
+
+The dashboard presents medication safety analytics such as total drugs, total analyses, high-risk pairs, critical-risk pairs, average risk score, top risky drug pairs, risk-category breakdown, and a drug-confusion heatmap.
+
+\subsection{Database Seeding}
+
+The backend includes an endpoint to seed common drug examples and known risky pairs for demonstration and testing.
+
+\section{Database Design}
+
+The project uses a PostgreSQL database with multiple related tables. The major tables are shown below.
+
+\begin{table}[h!]
+\centering
+\rowcolors{2}{LightGray}{white}
+\begin{tabularx}{\textwidth}{p{3.7cm}Y}
+\toprule
+\rowcolor{LightBlue}
+\textbf{Table Name} & \textbf{Purpose} \\
+\midrule
+drugs & Stores medicine details such as brand name, generic name, manufacturer, purpose, dosage form, drug class, Soundex code, and Metaphone code. \\
+confusion\_risks & Stores pairwise risk analysis between drugs, including spelling similarity, phonetic similarity, therapeutic context risk, combined risk, and risk category. \\
+analysis\_logs & Records user searches, number of similar drugs found, highest risk score, critical risks found, and analysis duration. \\
+known\_risky\_pairs & Stores known confusing drug pairs with risk level, reason, and source. \\
+system\_metrics & Stores dashboard-related metric values with timestamps. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Application Workflow}
+
+\begin{enumerate}[leftmargin=1.4cm]
+    \item The user opens the Streamlit frontend.
+    \item The user enters a drug name for analysis.
+    \item The frontend sends a request to the FastAPI backend.
+    \item The backend checks the local PostgreSQL database.
+    \item If required, the backend fetches drug information from OpenFDA.
+    \item The system calculates spelling, phonetic, and therapeutic similarity scores.
+    \item A combined risk score and risk category are generated.
+    \item The frontend displays similar drugs, risk details, and dashboard analytics.
+\end{enumerate}
+
+\section{API Endpoints}
+
+\begin{table}[h!]
+\centering
+\rowcolors{2}{LightGray}{white}
+\begin{tabularx}{\textwidth}{p{4.8cm}p{2.0cm}Y}
+\toprule
+\rowcolor{LightBlue}
+\textbf{Endpoint} & \textbf{Method} & \textbf{Purpose} \\
+\midrule
+/ & GET & API information and status. \\
+/health & GET & Backend and database health check. \\
+/api/search/\{drug\_name\} & GET & Main drug search and LASA risk analysis. \\
+/api/metrics & GET & Dashboard metrics. \\
+/api/top-risks & GET & Top high-risk drug pairs. \\
+/api/risk-breakdown & GET & Risk-category distribution. \\
+/api/heatmap & GET & Drug confusion heatmap data. \\
+/api/realtime-events & GET & Recent dashboard activity data. \\
+/api/seed-database & POST & Seeds example drugs into the system. \\
+/api/drugs & GET & Lists stored drugs with pagination. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Users of the System}
+
+The application is mainly useful for healthcare professionals such as doctors, pharmacists, nurses, hospital administrators, and medication safety officers. These users can use the system to check confusing drug names, review high-risk pairs, and monitor medication safety analytics.
+
+\section{Course Relevance}
+
+MediNomix demonstrates concepts from Advance Database Systems through relational database design, indexed fields, table relationships, backend API integration, external data ingestion, analytical endpoints, and dashboard-based data presentation.
+
+\section{Conclusion}
+
+MediNomix is a database-backed medication safety web application that focuses on LASA drug-error prevention. It combines FastAPI, Streamlit, PostgreSQL, OpenFDA integration, spelling similarity, phonetic matching, and dashboard analytics to support safer medication decision-making.
+
+\end{document}

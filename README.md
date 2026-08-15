@@ -9,7 +9,7 @@
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
 
 [![Status](https://img.shields.io/badge/Status-Completed-brightgreen?style=flat-square)]()
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](Final_Working_Project/LICENSE)
 [![Course](https://img.shields.io/badge/Course-Advance%20Database%20Systems-FF5722?style=flat-square)]()
 
 </div>
@@ -24,6 +24,7 @@ MediNomix is a professional medication safety web application developed as a **c
 - [About the App](#about-the-app)
 - [Course Context](#course-context)
 - [Key Features](#key-features)
+- [Screenshots](#screenshots)
 - [Use Case](#use-case)
 - [Technology Stack](#technology-stack)
 - [Database Design](#database-design)
@@ -52,7 +53,7 @@ MediNomix addresses the critical problem of medication errors caused by Look-Ali
 
 ## Course Context
 
-This project was developed to fulfill the **requirements of the Advance Database Systems course** in the **6th Semester of BS Computer Science**.
+This project was developed to fulfill the **requirements of the Advance Database Systems course** in the **5th Semester of BS Computer Science**.
 
 | Course Component | Implementation in This Project |
 |:----------------|:-------------------------------|
@@ -99,6 +100,29 @@ This project was developed to fulfill the **requirements of the Advance Database
 - Custom animated tabs and buttons
 - Responsive layout for all screen sizes
 - Medical imagery integration
+
+---
+
+## Screenshots
+
+### Home
+![Home professional tools section](Final_Working_Project/img/h1.jpeg)
+
+### Drug Analysis
+![Drug search quick examples](Final_Working_Project/img/d1.jpeg)
+![Drug search Metformin loading state](Final_Working_Project/img/d2.jpeg)
+![Drug analysis success message](Final_Working_Project/img/d3.jpeg)
+![Drug search Lisinopril loading state](Final_Working_Project/img/d4.jpeg)
+![Drug search multiple inputs](Final_Working_Project/img/d5.jpeg)
+
+### Analytics
+![Analytics summary metrics](Final_Working_Project/img/a1.jpeg)
+![Analytics risk distribution chart](Final_Working_Project/img/a2.jpeg)
+![Analytics top risk pairs chart](Final_Working_Project/img/a3.jpeg)
+
+### Real-Time Dashboard
+![Real-time live metrics](Final_Working_Project/img/r1.jpeg)
+![Real-time recent activity and system status](Final_Working_Project/img/r2.jpeg)
 
 ---
 
@@ -252,13 +276,14 @@ A healthcare professional can:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/medinomix.git
-cd medinomix
+git clone https://github.com/precious-05/MediNomixLocal.git
+cd MediNomixLocal
+cd Final_Working_Project
 ```
 
 2. Install backend dependencies:
 ```bash
-pip install fastapi uvicorn sqlalchemy psycopg2-binary pandas numpy requests aiohttp jellyfish fuzzywuzzy python-Levenshtein
+pip install -r requirements.txt
 ```
 
 3. Create PostgreSQL database:
@@ -273,7 +298,7 @@ DATABASE_URL = "postgresql://postgres:YOUR_PASSWORD@localhost:5432/confusionguar
 
 5. Start backend server:
 ```bash
-python backend.py
+python local_final_backend.py
 ```
 
 ### Frontend Setup
@@ -283,11 +308,11 @@ python backend.py
 pip install streamlit plotly pandas requests pillow
 ```
 
-2. Place logo image as `m11.jpg` in project root
+2. The logo image `m11.jpg` is included in `Final_Working_Project`
 
 3. Start frontend:
 ```bash
-streamlit run app.py
+streamlit run frontend_imp_realtime.py
 ```
 
 ### Database Seeding
@@ -307,7 +332,7 @@ curl -X POST http://localhost:8000/api/seed-database
    - **Home**: Hero section, statistics, features, user guide, medical images
    - **Drug Analysis**: Search medications, view risk results, filter by category
    - **Analytics**: Risk breakdown chart, top risks chart, confusion heatmap
-   - **Real-Time**: Auto-refreshing metrics, recent activity, system status
+   - **Real-Time**: Auto-refreshing metrics, recent activity, system status through REST API polling
 4. **Search Process**:
    - User enters drug name
    - Backend checks database cache
@@ -340,32 +365,20 @@ curl -X POST http://localhost:8000/api/seed-database
 ```
 MediNomix/
 │
-├── backend.py                           # FastAPI server with all endpoints
-├── app.py                               # Streamlit frontend application
+├── README.md                            # Main project guide
+├── Final_Working_Project/               # Actual final working project files
+│   ├── local_final_backend.py           # Final FastAPI backend with REST endpoints
+│   ├── frontend_imp_realtime.py         # Final Streamlit frontend using REST polling
+│   ├── requirements.txt                 # Python dependencies
+│   ├── m11.jpg                          # Logo image for frontend
+│   ├── LICENSE                          # Project license
+│   ├── FINAL_WORKING_FILES_GUIDE.md     # Short guide for final files
+│   └── img/                             # Working app screenshots
 │
-├── requirements.txt                     # Python dependencies
-├── m11.jpg                              # Logo image for frontend
-│
-├── database/
-│   ├── models.py                        # SQLAlchemy database models
-│   ├── database.py                      # Database connection setup
-│   └── init_db.py                       # Database initialization script
-│
-├── algorithms/
-│   ├── similarity.py                    # Levenshtein, Jaro-Winkler algorithms
-│   ├── phonetic.py                      # Soundex, Metaphone, NYSIIS
-│   └── risk_calculator.py               # Combined risk scoring logic
-│
-├── api/
-│   ├── openfda_client.py                # OpenFDA API integration
-│   └── drug_processor.py                # Drug data processing
-│
-├── analytics/
-│   ├── metrics.py                       # System metrics calculation
-│   └── heatmap_generator.py             # Confusion matrix generation
-│
-└── migrations/
-    └── versions/                        # Alembic database migrations
+├── docs/                                # Reports, presentation, and research material
+├── practice/                            # Older drafts and experiments, not the final version
+├── confusionguard.db                    # Local database file
+└── confusionguard.log                   # Local backend log
 ```
 
 ---
@@ -406,8 +419,9 @@ MediNomix/
 |:---|:---|
 | **Developer Name** | Alina Liaquat |
 | **GitHub** | [@precious-05](https://github.com/precious-05) |
+| **Repository** | [MediNomixLocal](https://github.com/precious-05/MediNomixLocal) |
 | **Email** | [alina.insights@gmail.com](mailto:alina.insights@gmail.com) |
-| **Class & Semester** | BS Computer Science - 6th Semester |
+| **Class & Semester** | BS Computer Science - 5th Semester |
 | **Department** | Department of Computer Science |
 | **Course** | Advance Database Systems |
 | **LinkedIn** | [www.linkedin.com/in/alina-liaquat-779347325](https://www.linkedin.com/in/alina-liaquat-779347325) |

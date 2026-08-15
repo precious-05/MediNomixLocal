@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+sqlalchemy
+psycopg2-binary
+pydantic
+requests
+aiohttp
+jellyfish
+fuzzywuzzy
+python-Levenshtein
+streamlit
+pandas
+numpy
+plotly
+pillow
